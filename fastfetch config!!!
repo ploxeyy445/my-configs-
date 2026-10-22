@@ -1,0 +1,24 @@
+ploxeyy445@archlinux ~> cat ~/.config/fastfetch/config.jsonc 
+{
+  "logo": {
+    "source": "~/.config/fastfetch/logo.txt",
+    "color": {
+      "1": "38;2;203;166;247",
+      "2": "38;2;203;166;247"
+    }
+  },
+  "display": {
+    "color": {
+      "keys": "38;2;203;166;247",
+      "title": "38;2;203;166;247"
+    }
+  },
+  "modules": [
+    { "type": "custom", "key": "OS", "format": "Arch (btw)" },
+    { "type": "command", "key": "DE/WM", "text": "d=$(fastfetch -c none -l none -s de --key-type none 2>/dev/null); if [ -n \"$d\" ]; then echo \"$d\"; else fastfetch -c none -l none -s wm --key-type none; fi" },
+    { "type": "memory", "key": "RAM" },
+    { "type": "custom", "key": "GPU", "format": "NVIDIA 5060 TI" },
+    { "type": "custom", "key": "CPU", "format": "Intel i7-14700F" }
+  ]
+}
+ploxeyy445@archlinux ~> 
