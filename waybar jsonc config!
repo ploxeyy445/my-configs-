@@ -1,0 +1,35 @@
+//-*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "reload_style_on_change": true,
+
+    "modules-left": ["ext/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "disk", "wireplumber", "custom/power", "tray"],
+
+    "ext/workspaces": {
+        "all-outputs": false,
+        "format": "{id}",
+        "format-icons": {
+            "default": "★"
+        },
+        "sort-by-id": true
+    },
+    "custom/power": {
+        "format": "\uf011",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/power-menu.sh"
+    },
+    "wireplumber": {
+        "format": "Vol: {volume}%",
+        "format-muted": "Muted",
+        "on-click": "pavucontrol"
+    },
+    "tray": { "spacing": 10 },
+    "clock": { "format-alt": "{:%Y-%m-%d}" },
+    "cpu": { "format": "CPU: {usage}%", "tooltip": false },
+    "memory": { "format": "Ram: {used}GiB" },
+    "disk": { "interval": 30, "path": "/", "format": "Disk: {free}" }
+}
