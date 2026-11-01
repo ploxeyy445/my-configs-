@@ -1,0 +1,77 @@
+//-*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "reload_style_on_change": true,
+
+    "modules-left": ["ext/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "disk", "wireplumber", "custom/power", "tray"],
+
+    "ext/workspaces": {
+        "all-outputs": false,
+        "format": "{id}",
+        "format-icons": {
+            "default": "★"
+        },
+        "sort-by-id": true
+    },
+    "custom/power": {
+        "format": "\uf011",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/power-menu.sh"
+    },
+    "wireplumber": {
+        "format": "Vol: {volume}%",
+        "format-muted": "Muted",
+        "on-click": "pavucontrol"
+    },
+    "tray": { "spacing": 10 },
+    "clock": { "format-alt": "{:%Y-%m-%d}" },
+    "cpu": { "format": "CPU: {usage}%", "tooltip": false },
+    "memory": { "format": "Ram: {used}GiB" },
+    "disk": { "interval": 30, "path": "/", "format": "Disk: {free}" }
+}
+ploxeyy445@archlinux ~> cat ~/.config/fuzzel/fuzzel.ini 
+# ~/.config/fuzzel/fuzzel.ini
+
+[main]
+font=Cute Dino:size=14
+prompt="❯ "
+placeholder=Search apps...
+icon-theme=Papirus-Dark
+icons-enabled=yes
+terminal=kitty -e
+layer=overlay
+width=36
+lines=10
+tabs=4
+horizontal-pad=24
+vertical-pad=18
+inner-pad=12
+line-height=26
+letter-spacing=0
+anchor=center
+fields=filename,name,generic,keywords
+
+[colors]
+# format is RRGGBBAA (no #)
+background=232136d9
+text=e0def4ff
+prompt=c4a7e7ff
+placeholder=6e6a86ff
+input=e0def4ff
+match=9ccfd8ff
+selection=44415acc
+selection-text=e0def4ff
+selection-match=9ccfd8ff
+counter=6e6a86ff
+border=c4a7e7ff
+
+[border]
+width=2
+radius=8
+
+[dmenu]
+exit-immediately-if-empty=yes
