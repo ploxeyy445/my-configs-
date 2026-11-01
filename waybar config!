@@ -1,301 +1,314 @@
 @import "colors.css";
-/* ============================================================
-   Waybar style.css : Catppuccin Mocha, floating pill edition
-   ============================================================ */
+
+
+/* =====================================================================
+
+   Waybar - Catppuccin Mocha - floating pills
+
+   ===================================================================== */
+
+
+@define-color accent        @lavender;
+
+@define-color clock_color   @lavender;
+
+@define-color audio_color   @pink;
+
+@define-color media_color   @mauve;
+
+@define-color network_color @teal;
+
+@define-color battery_color @green;
+
+
+/* ---------- Base ---------- */
 
 
 * {
-    font-family: "Monocraft", "JetBrainsMono Nerd Font", monospace;
+
+    font-family: "Cute Dino", "JetBrainsMono Nerd Font", monospace;
+
     font-size: 14px;
+
     font-weight: bold;
+
     border: none;
+
     border-radius: 0;
+
+    box-shadow: none;
+
+    text-shadow: none;
+
     min-height: 0;
+
 }
 
-/* Transparent bar so the modules float */
+
 window#waybar {
+
     background: transparent;
+
     color: @text;
+
 }
+
+
+.modules-left  { margin-left: 5px; }
+
+.modules-right { margin-right: 5px; }
+
 
 tooltip {
-    background: @mantle;
-    color: @text;
-    border: 2px solid @mauve;
-    border-radius: 12px;
+
+    background: alpha(@mantle, 0.96);
+
+    border: 1px solid alpha(@accent, 0.5);
+
+    border-radius: 14px;
+
 }
+
 
 tooltip label {
+
     color: @text;
-    padding: 2px 4px;
+
+    padding: 4px 6px;
+
 }
 
-/* ---------- Shared pill look ---------- */
 
-#workspaces,
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#network,
-#wireplumber,
-#mpris,
-#tray,
-#custom-arch,
-#custom-cpucat,
-#custom-power,
-#custom-reboot,
-#custom-shutdown {
-    background: alpha(@base, 0.92);
-    border-radius: 14px;
-    border: 2px solid @surface0;
-    margin: 6px 4px;
-    padding: 2px 12px;
+/* ---------- Individual Standalone Pills ---------- */
+
+
+#workspaces, #clock, #wireplumber, #tray, #network, #battery {
+
+    color: @accent;
+
+    background: alpha(@base, 0.85);
+
+    border: 1px solid alpha(currentColor, 0.3);
+
+    border-radius: 18px;
+
+    margin: 6px 3px;
+
+    padding: 2px 14px;
+
     transition: all 0.25s ease;
+
 }
 
-#clock:hover,
-#battery:hover,
-#cpu:hover,
-#memory:hover,
-#disk:hover,
-#network:hover,
-#wireplumber:hover,
-#mpris:hover,
-#custom-cpucat:hover,
-#custom-arch:hover {
-    background: @surface0;
-}
+
+
+
+/* ---------- Module colors ---------- */
+
+
+#clock               { color: @clock_color; }
+
+#cpu, #memory, #disk { color: @accent; }
+
+#wireplumber         { color: @audio_color; }
+
+
+#network             { color: @network_color; }
+
+#battery             { color: @battery_color; }
+
+
+/* ---------- States ---------- */
+
+
+#cpu.warning, #memory.warning, #disk.warning,
+
+#battery.warning:not(.charging) { color: @yellow; }
+
+
+#cpu.critical, #memory.critical, #disk.critical { color: @red; }
+
+
+#wireplumber.muted { color: @red; }
+
+
 
 /* ---------- Workspaces ---------- */
 
-#workspaces {
-    padding: 2px 6px;
-    margin-left: 0;
-    border-color: @surface1;
-}
+
+#workspaces { padding: 2px 4px; }
+
 
 #workspaces button {
-    padding: 0 8px;
-    margin: 2px 2px;
+
+    padding: 3px 10px 0;
+
+    margin: 2px 1px;
+
+    font-size: 26px;
+
+    font-family: "Cute Dino", "JetBrainsMono Nerd Font", monospace;
+
     color: @overlay0;
+
     background: transparent;
-    border-radius: 10px;
-    transition: all 0.25s ease;
+
+    border-radius: 14px;
+
+    transition: all 0.3s ease;
+
 }
 
-#workspaces button.empty {
-    color: @surface1;
-}
 
 #workspaces button:hover {
+
     background: @surface0;
+
     color: @text;
-    box-shadow: none;
+
 }
 
-#workspaces button.active,
-#workspaces button.empty.active {
-    background: @mauve;
+
+/* the active workspace stretches into a filled pill */
+
+#workspaces button.active {
+
+    background: @accent;
+
     color: @crust;
+
+    padding: 3px 10px 0;
+
 }
+
 
 #workspaces button.urgent {
+
     background: @red;
+
     color: @crust;
+
 }
 
-/* Reset the default hover underline so it doesn't fight the pills */
-button:hover {
-    background: inherit;
-    box-shadow: none;
+
+/* ---------- Stats Strip (Fused Capsule) ---------- */
+
+
+#cpu, #memory, #disk {
+
+    background: alpha(@base, 0.85);
+
+    border: 1px solid alpha(currentColor, 0.3);
+
+    margin-top: 6px;
+
+    margin-bottom: 6px;
+
+    padding: 2px 14px;
+
+    transition: all 0.25s ease;
+
 }
 
-/* ---------- Modules ---------- */
 
-#clock {
-    color: @sky;
-    border-color: alpha(@sky, 0.5);
+#cpu:hover, #memory:hover, #disk:hover {
+
+    background: @surface0;
+
+    border-color: alpha(currentColor, 0.8);
+
 }
+
 
 #cpu {
-    color: @green;
-    border-color: alpha(@green, 0.5);
+
+    margin-left: 3px;
+
+    margin-right: 0;
+
+    border-right: none;
+
+    border-radius: 18px 0 0 18px;
+
 }
 
-#cpu.warning {
-    color: @yellow;
-    border-color: @yellow;
-}
-
-#cpu.critical {
-    color: @red;
-    border-color: @red;
-}
 
 #memory {
-    color: @mauve;
-    border-color: alpha(@mauve, 0.5);
+
+    margin-left: 0;
+
+    margin-right: 0;
+
+    border-left: none;
+
+    border-right: none;
+
+    border-radius: 0;
+
 }
 
-#memory.warning {
-    color: @yellow;
-    border-color: @yellow;
-}
-
-#memory.critical {
-    color: @red;
-    border-color: @red;
-}
 
 #disk {
-    color: @peach;
-    border-color: alpha(@peach, 0.5);
+
+    margin-left: 0;
+
+    margin-right: 3px;
+
+    border-left: none;
+
+    border-radius: 0 18px 18px 0;
+
 }
 
-#network {
-    color: @blue;
-    border-color: alpha(@blue, 0.5);
-}
 
-#network.disconnected,
-#network.disabled {
-    color: @crust;
-    background: @red;
-    border-color: @red;
-}
+/* ---------- Tray ---------- */
 
-#wireplumber {
-    color: @pink;
-    border-color: alpha(@pink, 0.5);
-}
 
-#wireplumber.muted {
-    color: @red;
-    border-color: @red;
-}
+#tray { padding: 2px 10px; }
 
-#mpris {
-    color: @teal;
-    border-color: alpha(@teal, 0.5);
-}
-
-#mpris.paused,
-#mpris.stopped {
-    color: @overlay0;
-    border-color: @surface0;
-}
-
-#battery {
-    color: @lavender;
-    border-color: alpha(@lavender, 0.5);
-}
-
-#battery.charging,
-#battery.plugged {
-    color: @green;
-    border-color: @green;
-}
-
-#battery.warning:not(.charging) {
-    color: @yellow;
-    border-color: @yellow;
-}
-
-#battery.critical:not(.charging) {
-    color: @crust;
-    background: @red;
-    border-color: @red;
-    animation: blink 0.8s steps(2) infinite alternate;
-}
-
-@keyframes blink {
-    to {
-        background: @mantle;
-        color: @red;
-    }
-}
-
-#tray {
-    padding: 2px 10px;
-    border-color: @surface1;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
+#tray > .passive { -gtk-icon-effect: dim; }
 
 #tray > .needs-attention {
+
     -gtk-icon-effect: highlight;
+
     background: @red;
-    border-radius: 10px;
+
+    border-radius: 12px;
+
 }
 
-/* Waycat CPU cat */
-#custom-cpucat {
-    font-family: "Waycat", monospace;
-    font-size: 20px;
-    color: @rosewater;
-    border-color: alpha(@flamingo, 0.5);
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-/* Separators: hidden (GTK CSS has no display:none, so shrink them to nothing) */
-#custom-sep {
-    color: transparent;
-    background: transparent;
-    font-size: 0;
-    padding: 0;
-    margin: 0;
-    min-width: 0;
-    border: none;
-}
-
-/* Outer margins */
-.modules-right > widget:last-child > * {
-    margin-right: 8px;
-}
-
-/* Arch logo */
-#custom-arch {
-    color: @sapphire;
-    border-color: alpha(@sapphire, 0.5);
-    font-size: 18px;
-    padding: 2px 14px 2px 8px;
-    margin-left: 8px;
-}
-
-/* ---------- Power menu ---------- */
+/* ---------- Power button ---------- */
 
 #custom-power {
+
+    font-family: "JetBrainsMono Nerd Font", monospace;
+
+    font-size: 16px;
+
     color: @red;
-    border-color: alpha(@red, 0.5);
+
+    background: alpha(@base, 0.85);
+
+    border: 1px solid alpha(currentColor, 0.3);
+
+    border-radius: 18px;
+
+    margin: 6px 3px;
+
+    padding: 2px 14px;
+
+    transition: all 0.25s ease;
+
 }
 
 #custom-power:hover {
-    background: @red;
-    color: @crust;
+
+    background: @surface0;
+
+    border-color: alpha(currentColor, 0.8);
+
 }
 
-#custom-reboot {
-    color: @yellow;
-    border-color: alpha(@yellow, 0.5);
-}
 
-#custom-reboot:hover {
-    background: @yellow;
-    color: @crust;
-}
-
-#custom-shutdown {
-    color: @red;
-    border-color: alpha(@red, 0.5);
-}
-
-#custom-shutdown:hover {
-    background: @red;
-    color: @crust;
-}
+#workspaces button label { font-size: 16px; }
